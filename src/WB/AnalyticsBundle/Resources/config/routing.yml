@@ -1,0 +1,8 @@
+wb_analytics_home:
+    path:      /
+    defaults: { _controller: WBAnalyticsBundle:Stat:index }
+
+wb_analytics_collect:
+    path:      /collect
+    defaults: { _controller: WBAnalyticsBundle:Stat:collect }
+    
