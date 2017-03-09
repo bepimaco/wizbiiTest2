@@ -11,18 +11,26 @@ use WB\AnalyticsBundle\Services\Stat\AnalyticsException;
 
 class StatController extends Controller 
 {
+	
+/*
+ * Main action
+ */
     public function indexAction()
     {
-        return new Response("Notre propre Hello World !");
+        return new Response("success");
     }
-	
+
+
+/*
+ * Collect datas action
+ */
 	public function collectAction()
 	{
 		
 	// Create new document
 		$wbLine = new \WB\AnalyticsBundle\Document\WBLine();
 		
-	// 
+	// Extract and anayse parameters
 		try
 		{
 			$wbLine->extractParameters();
@@ -44,15 +52,10 @@ class StatController extends Controller
 		$wui = $wbLine->getWizBeeNaute();
 		if ($wui != 0)
 			if ($this->getDoctrine()->getManager()->getRepository('WBWizbiinauteBundle:Wizbiinaute')->findOneBy(array('wui' => $wui)) === null)
-				throw new NotFoundHttpException("L'utilisateur d'id ".$wui." n'existe pas.");
-		
-		echo $wui.'<br>';
-		echo '<pre>'; print_r($_GET); echo '</pre>';
-        return new Response("Stats à traiter !");
-		
+				throw new NotFoundHttpException("L'utilisateur d'id ".$wui." n'existe pas.");		
 
-	// Get manager
-		/*$dm = $this->get('doctrine_mongodb')->getManager();
+	// Get Mongo manager
+		$dm = $this->get('doctrine_mongodb')->getManager();
 	
 	// Check if line has still been registred
 		$line = $dm
@@ -63,13 +66,12 @@ class StatController extends Controller
 			return new Response("Work still done.");
 		}
 
-
-
 	// Add to MongoDB
 		$dm->persist($wbLine);
-		$dm->flush();*/
+		$dm->flush();
 
-		//return $this->redirectToRoute('homepage');
+	// Go to main route
+		return $this->redirectToRoute('wb_analytics_home');
 		
     }
 }

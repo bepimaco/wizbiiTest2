@@ -3,7 +3,7 @@
 namespace WB\AnalyticsBundle\Document;
 
 use WB\AnalyticsBundle\Services\Stat\AnalyticsException;
-//use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
  * @MongoDB\Document
@@ -69,67 +69,75 @@ class WBLine
 	/**
 	* @return int
 	*/
-   public function getId()
-   {
+	public function getId()
+	{
 		return $this->id;
-   }
+	}
 
-   /**
+	/**
 	* @param int $title
 	*/
-   public function setTimestamp($timestamp)
-   {
+	public function setTimestamp($timestamp)
+	{
 		$this->timestamp = $timestamp;
-   }
+	}
 
-   /**
+	/**
 	* @return int
 	*/
-   public function getTimestamp()
-   {
+	public function getTimestamp()
+	{
 		return $this->timestamp;
-   }
+	}
 
-   /**
+	/**
 	* @param string $uniquetemporalhash
 	*/
-   public function setUniquetemporalhash($uniquetemporalhash)
-   {
+	public function setUniquetemporalhash($uniquetemporalhash)
+	{
 		$this->uniquetemporalhash = $uniquetemporalhash;
-   }
+	}
 
-   /**
+	/**
 	* @return string
 	*/
-   public function getUniquetemporalhash()
-   {
+	public function getUniquetemporalhash()
+	{
 		return $this->uniquetemporalhash;
-   }
+	}
 
-   /**
+	/**
 	* @param collection $analytics
 	*/
-   public function setAnalytics($analytics)
-   {
+	public function setAnalytics($analytics)
+	{
 		$this->analytics = $analytics;
-   }
+	}
 
-   /**
+	/**
 	* @return collection
 	*/
-   public function getAnalytics()
-   {
+	public function getAnalytics()
+	{
 		return $this->analytics;
-   }
+	}
 
-   /**
+	/**
+	* @return collection
+	*/
+	public function setAnalyticsValues($analyticsValues)
+	{
+		$this->analyticsValues = $this->analyticsValues;
+	}
+
+	/**
 	* @return int
 	*/
-   public function getWizBeeNaute()
-   {
+	public function getWizBeeNaute()
+	{
 		if (isset($this->analyticsValues['wui'])) return $this->analyticsValues['wui'];
 		return 0;
-   }
+	}
 
 
 /**
